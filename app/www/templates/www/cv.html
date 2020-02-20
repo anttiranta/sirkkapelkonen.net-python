@@ -1,0 +1,40 @@
+{% extends 'www/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<img src="{% static 'www/img/work/lasten_haaleikki_370y.jpg' %}" alt="Sirkka Pelkonen: Lasten hääleikki" class="kuva" />
+<div class="teksti">
+	<h2>{% block title %}Curriculum Vitae{% endblock %}</h2>
+	Sirkka Pelkonen<br />
+	s. 20.9.1952 Oulu<br /><br />
+
+	<b>Taideopinnot</b><br />
+	Ouluopisto, Piirustuksen perusteet 2003 (2v)<br />
+	Ouluopisto, Akvarellimaalaus (3v)<br />
+	Lapin Yliopisto, Kuvataiteiden perusopinnot 2006-07 <br />
+	Lapin Yliopisto, Kuvataiteiden aineopinnot 2008-10 <br />
+	<br />
+
+	<b>Kursseja</b><br />
+	Oulun seudun kuvataiteilijoiden kursseja<br />
+	Kuusamon Kansanopiston kursseja <br />
+	<br />
+
+	<b>Yksityisnäyttelyt</b><br />
+	Oulun Automuseon näyttely 2006<br />
+	Taide- ja kehys Jokela kesäkuu 2006<br />
+	Oulun Automuseo 2008<br />
+	<br />
+
+	<b>Ryhmä- ja yhteisnäyttelyt</b><br />
+	Haukiputaan Teatterikuoppa 2004-06<br />
+	Oulun kaupunginkirjasto 2006<br />
+	Taidekehystämä Lauronen 2008<br />
+	Ouluopisto yhteisnäyttely 2008<br />
+	Simon Wanha Pappila 2010<br />
+	<br />
+
+	<b>Jäsenyydet</b><br />
+	Oulun seudun kuvataiteilijat<br />
+	Haukiputaan taideyhdistys<br /><br />
+</div>
+{% endblock %}

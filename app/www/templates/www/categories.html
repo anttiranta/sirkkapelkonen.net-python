@@ -1,0 +1,38 @@
+{% extends 'www/base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<div class="teksti">
+	<h2>{{ page_heading }}</h2>
+
+	{% if category.has_children %}
+	Klikkaamalla kuvaa aukeaa toinen sivu josta löytyy alakategorian teokset.
+	{% else %}
+	Tältä sivulta löydät töitäni. Jos joku työ miellyttää erityisesti
+	<a href="{% url 'contact' %}" title="Yhteystiedot" class="underline">ota yhteyttä</a>.
+	{% endif %}
+	<br /><br />
+
+	<!-- Category list -->
+	<table width='100%'>
+		{% for category in category_list %}
+		{% if forloop.counter0|divisibleby:"4" or forloop.first %}
+		<tr>
+		{% endif %}
+			<td valign='bottom' width='150'>
+				<a href="{% url 'gallery' category.url_key %}" class="galleria">
+					<img src="{% static 'www/img/work/' %}{{category.image}}" alt="{{ category.name }}" width='150' />
+				</a><br /> 
+				<a href="{% url 'gallery' category.url_key %}" class="galleria">{{ category.name }}</a>
+			</td>
+		{% if forloop.counter|divisibleby:"4" or forloop.last %}
+		</tr>
+		{% endif %}
+		{% endfor %}
+	</table>
+	<br /><br />
+
+    {% include "www/gallery/pagination.html" %}
+</div>
+
+{% endblock %}

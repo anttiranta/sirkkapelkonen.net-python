@@ -1,0 +1,10 @@
+name,url_key,image,position,active,parent_category_url_key
+Akvarellit,akvarellit ,akvarellit2.jpg,1,,
+Akryylit,akryylit,akryylit.jpg,2,,
+Öljyvärit,oljy,oljyvarit2.jpg,3,,
+Kortit,kortit,kortit.jpg,4,,
+Grafiikkatyöt,grafiikka,grafiikka2.jpg,5,0,
+Vanhat autot,autokortit ,kortit.jpg,1,,kortit
+Joulukortit,joulukortit,joulukortit.jpg,2,,kortit
+Kesäaiheiset kortit,kesakortit ,kesakortit.jpg,4,,kortit
+Pääsiäiskortit,paasiaiskortit,paasiaiskortit.jpg,3,,kortit

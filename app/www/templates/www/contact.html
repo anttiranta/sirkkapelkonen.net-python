@@ -1,0 +1,61 @@
+{% extends 'www/base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<img src="{% static 'www/img/work/raatteentien_piiritys_370y.jpg' %}" alt="Sirkka Pelkonen: Raatteentien taistelu"
+    class="kuva" />
+<div class="teksti">
+    {% if message %}
+        {{ message |safe }}
+    {% else %}
+    <h2>Ota yhteyttä</h2>
+
+    Puhelin: 040-7780381<br />
+    Osoite: Hiidentie 2 E 66, 90550 Oulu<br />
+    Sähköposti: pelkonen.sirkka(at)gmail.com<br />
+
+    <!-- Form -->
+    <form id="yhteys_lomake" name="yhteys_lomake" action="{% url 'contact' %}" id="lomake" style="overflow:auto"
+        method="post">
+        {% csrf_token %}
+
+        <div id="lomake-vrapperi">
+            <div>
+                <label for="name">Nimi:</label>
+                <input style="width:280px" type="text" id="name" name="name" maxlength="128" class="required"
+                    value="{{ values.name }}" />
+            </div>
+            <span class="error">{{ errors.name|escape }}</span>
+            <div>
+                <label for="email">Sähköposti: </label>
+                <input style="width:280px" type="text" id="email" name="email" maxlength="128" class="required email"
+                    value="{{ values.email }}" />
+            </div>
+            <span class="error">{{ errors.email|escape }}</span>
+            <div>
+                <label for="subject">Aihe: </label>
+                <input style="width:280px" type="text" name="subject" maxlength="250" value="{{ values.subject }}" />
+            </div>
+            <span class="error">{{ errors.subject|escape }}</span>
+            <div>
+                <label for="message">Viesti:</label>
+                <textarea id="message" style="width:280px" name="message" cols=36 ROWS=6
+                    class="required">{{ values.message }}</textarea>
+            </div>
+            <span class="error">{{ errors.message|escape }}</span>
+            <div>
+                <input type="submit" name="submit" value="Lähetä viesti" />
+            </div>
+            <input name="info" id="info" type="text" class="hidden" />
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block additional_js %}
+{% load staticfiles %}
+<script src="{% static 'www/js/jquery-1.4.2.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'www/js/jquery.validate.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'www/js/contact/form-validation.js' %}" type="text/javascript"></script>
+{% endblock %}

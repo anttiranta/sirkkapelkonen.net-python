@@ -1,0 +1,51 @@
+{% extends 'www/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div class="teksti">
+    <h2>{{ page_heading }}</h2>
+
+    Klikkaamalla kuvaa näet teoksen suurempana. <br /><br />
+
+    <!-- Product list -->
+    <div id="gallery">
+        {% for product in product_list %}
+        <div class="pikkukuva">
+            <a href="{% static 'www/img/work/' %}{{product.image}}"
+                title="{{ product.description }}">
+                <img src="{% static 'www/img/work/' %}{{product.thumbnail}}" width='100' alt="{{ product.name }}" />
+            </a>
+        </div>
+        {% if forloop.counter|divisibleby:"6" or forloop.last %}
+		<br class="clear"/>
+		{% endif %}
+        {% endfor %}
+    </div>
+    <br /><br />
+
+    {% include "www/gallery/pagination.html" %}
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#gallery a').lightBox({
+            containerResizeSpeed: 350,
+            imageBtnPrev: "{% static 'www/img/lightbox/prev.png' %}",
+            imageBtnNext: "{% static 'www/img/lightbox/next.png' %}",
+            imageLoading: "{% static 'www/img/lightbox/lightbox-ico-loading.gif' %}",
+            imageBtnClose: "{% static 'www/img/lightbox/lightbox-btn-close.gif' %}",
+            imageBlank: "{% static 'www/img/lightbox/lightbox-blank.gif' %}",
+        });
+    });
+</script>
+{% endblock %}
+
+{% block additional_js %}
+{% load staticfiles %}
+<script src="{% static 'www/js/jquery-1.4.2.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'www/js/jquery.lightbox-0.5.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block additional_css %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'www/css/jquery.lightbox-0.5.css' %}" media="screen" />
+{% endblock %}

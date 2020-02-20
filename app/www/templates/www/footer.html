@@ -1,0 +1,8 @@
+{% load footer %}
+{% current_time "%Y" as current_year %}
+<div id="alalokero">
+    <p style="float:left;">&copy; Copyright 2005-{{ current_year }} <a href="{% url 'index' %}"
+            style="text-decoration: none;">Sirkka Pelkonen</a>
+    </p>
+    <p style="float:right;">Päivitetty: 19.6.2016</p>
+</div>

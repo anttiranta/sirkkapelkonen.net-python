@@ -1,0 +1,25 @@
+<div id="paluulinkki">
+    <!-- Previous page url -->
+    {% if is_paginated and page_obj.has_previous %}
+    <span style="padding-right: 10px;">
+        <a href="?page={{ page_obj.previous_page_number }}"  class="galleria_ala">&laquo; Edelliset</a>
+    </span>    
+    {% endif %}
+
+    <!-- Parent page url -->
+    {% if parent_category %}
+    <a href="{% url 'gallery' parent_category.url_key %}" class="galleria_ala">
+        Takaisin galleriaan '{{ parent_category.name }}'
+    </a>
+    {% elif category %}
+    <a href="{% url 'gallery' %}" class="galleria_ala"> Takaisin galleriaan</a>
+    {% endif %}
+
+    <!-- Next page url -->
+    {% if is_paginated and page_obj.has_next %}
+    <span style="padding-left: 10px;">
+        <a href="?page={{ page_obj.next_page_number }}"  class="galleria_ala">Seuraavat &raquo;</a>
+    </span>
+    {% endif %}
+    <br /><br />
+</div>

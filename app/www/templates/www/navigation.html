@@ -1,0 +1,11 @@
+<div id="valikko">
+	<ul>
+		<li><a href="{% url 'index' %}" title="Palaa etusivulle" class="{% if active_tab == 'index' %}aktiivi{% endif %}">Etusivu</a></li>
+		<li><a href="{% url 'exhibitions' %}" title="Näyttelyt" class="{% if active_tab == 'exhibitions' %}aktiivi{% endif %}">Näyttelyt</a></li>
+		<li><a href="{% url 'gallery' %}" title="Galleria" class="{% if active_tab == 'gallery' %}aktiivi{% endif %}">Galleria</a></li>
+		<li><a href="{% url 'cv' %}" title="Curriculum Vitae" class="{% if active_tab == 'cv' %}aktiivi{% endif %}">CV</a></li>
+		<li><a href="{% url 'contact' %}" title="Yhteystiedot" class="{% if active_tab == 'contact' %}aktiivi{% endif %}"
+				style="border-right: 0pt none;">Yhteystiedot</a>
+		</li>
+	</ul>
+</div>
