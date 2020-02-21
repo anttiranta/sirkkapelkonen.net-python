@@ -9,7 +9,7 @@ Python/Django version of sirkkapelkonen.net (homepage of artist Sirkka Pelkonen)
 Most of the code is from 2016, although Django and readme I updated before pushing the code to Github. 
 This site was never used in production, it's simply just a hobby project of mine. 
 
-![Image of sirkkapelkonen.net](https://raw.githubusercontent.com/anttiranta/sirkkapelkonen.net/master/screenshots/web_sirkkap.jpg)
+![Image of sirkkapelkonen.net](https://raw.githubusercontent.com/anttiranta/sirkkapelkonen.net/master/screenshots/sirkkap_galleria.jpg)
 
 
 Local development
