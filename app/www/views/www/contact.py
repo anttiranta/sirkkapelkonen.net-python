@@ -15,39 +15,30 @@ class ContactView(FormView):
     error_message = '<h2>Viestin lähettäminen epäonnistui</h2> Viestin lähettämisessä tapahtui virhe. <br /><br /> Voit myös lähettää sähköpostia Sirkka Pelkoselle osoitteeseen <a href="mailto:pelkonen.sirkka(at)gmail.com" class="underline">pelkonen.sirkka(at)gmail.com</a>.<br /><br /><a href="/" title="Etusivu" class="underline">Palaa sivustolle&#62;&#62;&#62;</a>'
     success_message = '<h2>Kiitos viestistäsi</h2> Kiitos viestistäsi!<br /><br /> <a href="/" title="Etusivu" class="underline">Palaa sivustolle&#62;&#62;&#62;</a>'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['page_title'] = "Sirkka Pelkonen - Yhteystiedot"
+        context['active_tab'] = "contact"
+
+        if 'message' in self.request.session:
+            context['message'] = self.request.session.get('message')
+            del self.request.session['message']
+
+        return context
+
     def form_invalid(self, form):
         context = self.get_context_data(form=form)
-        context['errors'] = self.__get_form_errors(form)
-        context['values'] = self.__get_form_values(form)
+        context['errors'] = form.get_form_errors()
+        context['values'] = form.get_form_values()
 
         return self.render_to_response(context)
-
-    def __get_form_errors(self, form):
-        errors = {}
-        if form.errors is None:
-            return errors
-
-        for field in form:
-            for error in field.errors:
-                if field not in errors:
-                    errors[field.name] = str(error)
-                else:
-                    errors[field.name] = "%s<br>%s" % (
-                        str(errors[field]), error)
-        return errors
-
-    def __get_form_values(self, form):
-        vals = {}
-        if form.errors:
-            for field in form:
-                vals[field.name] = str(field.value())
-        return vals
 
     def form_valid(self, form):
         message = None
 
         try:
-            self.__check_for_spam(form)
+            form.check_for_spam()
             form.send_email()
         except ValueError as ve:
             message = self.__get_message(ve)
@@ -70,20 +61,3 @@ class ContactView(FormView):
         elif (isinstance(exception, Exception)):
             return self.error_message
         return None
-
-    def __check_for_spam(self, form):
-        info = form.cleaned_data['info']
-        if info != '':
-            raise ValueError('Spam detected.')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context['page_title'] = "Sirkka Pelkonen - Yhteystiedot"
-        context['active_tab'] = "contact"
-
-        if 'message' in self.request.session:
-            context['message'] = self.request.session.get('message')
-            del self.request.session['message']
-
-        return context
